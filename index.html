@@ -28,24 +28,26 @@
       border-radius: 20px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       text-align: center;
-      max-width: 400px;
+      max-width: 450px;
       width: 90%;
     }
 
     .logo {
       max-width: 200px;
+      margin-bottom: 20px;
     }
 
     h1 {
-      font-size: 24px;
+      font-size: 26px;
       margin-bottom: 10px;
       color: #222;
+      letter-spacing: 1px;
     }
 
     p {
       font-size: 16px;
       color: #555;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
     .timer {
@@ -58,7 +60,7 @@
     .time-box {
       background-color: #0d9488;
       color: white;
-      padding: 20px;
+      padding: 18px;
       border-radius: 10px;
       font-size: 18px;
       font-weight: bold;
@@ -67,25 +69,35 @@
 
     .social {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      gap: 30px;
+      gap: 15px;
       margin-top: 20px;
     }
 
     .social a {
-      color: #0d9488;
+      background-color: #0d9488;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    .social a:hover {
+      background-color: #0f766e;
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <img src="/logo.png" alt="logo" class="logo" />
+    <img src="/logo.png" alt="ReadlyUz logo" class="logo" />
     <h1>TEZ KUNDA</h1>
     <p>Kitoblar qalbdan qalbga o‘tadi.</p>
-    <p>Web-saytimiz tez kunda ishga tushadi</p>
+    <p>Web-saytimiz tez orada ishga tushadi</p>
 
     <div class="timer">
       <div class="time-box" id="days">00</div>
@@ -94,10 +106,13 @@
       <div class="time-box" id="seconds">00</div>
     </div>
 
-    <p>Hozirda bizni ijtimoiy tarmoqlarimizga obuna bo‘ling</p>
+    <p>Bizni ijtimoiy tarmoqlarda kuzatib boring:</p>
     <div class="social">
-      <a href="https://instagram.com/ReadlyUz" target="_blank">Instagram</a>
-      <a href="https://t.me/ReadlyUz" target="_blank">Telegram</a>
+      <a href="https://t.me/readlyuz" target="_blank">Telegram</a>
+      <a href="https://www.instagram.com/readlyuz" target="_blank">Instagram</a>
+      <a href="https://www.threads.net/@readlyuz" target="_blank">Threads</a>
+      <a href="https://www.linkedin.com/company/readlyuz" target="_blank">LinkedIn</a>
+      <a href="https://readly.blog/" target="_blank">Web-sayt</a>
     </div>
   </div>
 
@@ -110,7 +125,7 @@
       endDate = new Date(saved);
     } else {
       endDate = new Date();
-      endDate.setDate(endDate.getDate() + 60); // 60 kun qo‘shiladi
+      endDate.setDate(endDate.getDate() + 60); // 60 kun
       localStorage.setItem(STORAGE_KEY, endDate.toISOString());
     }
 
@@ -119,10 +134,9 @@
       const diff = endDate - now;
 
       if (diff <= 0) {
-        document.getElementById("days").textContent = "00";
-        document.getElementById("hours").textContent = "00";
-        document.getElementById("minutes").textContent = "00";
-        document.getElementById("seconds").textContent = "00";
+        ["days", "hours", "minutes", "seconds"].forEach(id => {
+          document.getElementById(id).textContent = "00";
+        });
         return;
       }
 
@@ -138,7 +152,7 @@
     };
 
     updateTimer();
-    setInterval(updateTimer, 1000); // har soniyada yangilanadi
+    setInterval(updateTimer, 1000);
   </script>
 </body>
 
